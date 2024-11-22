@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  /* config options here */
+const nextConfig : NextConfig = {
+  env: { currency: "USD" },
+  publicRuntimeConfig: { currency: "USD" },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
