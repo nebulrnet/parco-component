@@ -6,6 +6,7 @@ export type Fund = {
   risk: number;
   examples: string;
   description: string;
+  expanded: boolean;
 };
 
 export default Fund;

@@ -1,15 +1,22 @@
 export const defaultTheme = {
   direction: "ltr",
   palette: {
+    blue: {
+      main: "#0671AD",
+      hover: "#044F79",
+      light: "#bac8b5",
+      dark: "#344767",
+      highlight: "#21b8fd"
+    },
     primary: {
       main: "#FFFFFF",
       light: "#F9F9F9",
       dark: "#262627",
     },
     secondary: {
-      main: "#21c1d6",
+      main: "#344767",
       light: "#e1f7f8",
-      dark: "#21c1d6",
+      dark: "#293852",
     },
     success: {
       main: "#60BE64",
@@ -36,12 +43,11 @@ export const defaultTheme = {
       contrastText: "#ffffff",
     },
     grey: {
-      100: "#F2F6FA",
-      200: "#EAEFF4",
-      300: "#DFE5EF",
-      400: "#7C8FAC",
-      500: "#5A6A85",
-      600: "#2a3547",
+      100: "#F1F1F1",
+      200: "#D2D6DA",
+      300: "#A3A7AA",
+      400: "#75787b",
+      500: "#495057",
     },
     text: {
       primary: "#2a3547",

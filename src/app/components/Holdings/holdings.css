@@ -1,0 +1,16 @@
+
+
+.fundexpand {
+    .title {
+
+    }
+    .description {
+
+    }
+}   
+
+path.MuiPieArc-root {
+    &:nth-child(0) {
+        fill: red !important;
+    }
+}
