@@ -2,7 +2,7 @@
 import "./DefaultColors";
 import { Theme } from "@mui/material/styles";
 
-const components: any = (theme: Theme) => {
+const components = (theme: Theme) => {
   return {
     MuiCssBaseline: {
       styleOverrides: {
@@ -153,8 +153,6 @@ const components: any = (theme: Theme) => {
     MuiButton: {
       styleOverrides: {
         root: {
-          textTransform: "none",
-          boxShadow: "none",
         },
         text: {
           padding: "5px 15px",

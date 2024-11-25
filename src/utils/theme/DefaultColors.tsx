@@ -1,5 +1,4 @@
 export const defaultTheme = {
-  direction: "ltr",
   palette: {
     blue: {
       main: "#0671AD",

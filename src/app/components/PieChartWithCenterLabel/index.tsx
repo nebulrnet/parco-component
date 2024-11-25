@@ -5,14 +5,9 @@ import Stack from '@mui/material/Stack';
 import { PieChart } from '@mui/x-charts/PieChart';
 import { useDrawingArea } from '@mui/x-charts/hooks';
 import { styled } from '@mui/material/styles';
-import { Fund, Funds } from '@/types';
+import { Fund } from '@/types';
 import currency from 'currency.js';
-import { Typography} from '@mui/material';
-
-const size = {
-  width: 400,
-  height: 200,
-};
+import { PieItemIdentifier } from '@mui/x-charts';
 
 const StyledText = styled('text')(({ theme }) => ({
   fill: theme.palette.text.primary,
@@ -22,7 +17,7 @@ const StyledText = styled('text')(({ theme }) => ({
   fontWeight: '700'
 }));
 
-const CenterTitle = styled('text')(({ theme }) => ({
+const CenterTitle = styled('text')(({}) => ({
   fill: 'black',
   textAnchor: 'middle',
   dominantBaseLine: 'central',
@@ -43,14 +38,21 @@ function PieCenterLabel({ title, value }: { title: string, value: number }) {
   );
 }
 
-export default function PieChartWithCenterLabel({ funds, reset, select } : { funds : Fund[], reset : boolean, select: (index: number) => {} }) {
+export default function PieChartWithCenterLabel({ funds, reset, select } : { funds : Fund[], reset : boolean, select: (index: number) => void }) {
   const [i, setI] = useState(-1);
-  const [hightlightedItem, setHighlightedItem] = useState({});
+  const [hightlightedItem, setHighlightedItem] = useState<PieItemIdentifier|null>({
+    type: 'pie',
+    seriesId: "auto-generated-id-0",
+    dataIndex: 0
+  });
   let data = [];
   let total = 0;
   const colors = ["#044F79", "#75787b", "#ADC5E3", "#344767", "black", "#21b8fd"]
 
+  // Look through the fund entries to find the 
+  // Corresponding pie section
   useEffect(() => {
+    let found = false;
     for(let x = 0; x < funds.length; x++) {
       if (funds[x].expanded) {
         setHighlightedItem({
@@ -58,16 +60,15 @@ export default function PieChartWithCenterLabel({ funds, reset, select } : { fun
           seriesId: "auto-generated-id-0",
           dataIndex: x
         });
+        found = true;
         break;
       }
     }
+    if (!found) {
+      setHighlightedItem(null);
+    }
   }, [funds]);
-
-  useEffect(() => {
-    setI(-1);
-    setHighlightedItem(null);
-  }, [reset, setI])
-
+  
   data = funds?.map((fund : Fund, index: number) => {
     total += fund.value;
     return {
@@ -76,6 +77,12 @@ export default function PieChartWithCenterLabel({ funds, reset, select } : { fun
       color: colors[index]
     };
   });
+
+  useEffect(() => {
+    setI(-1);
+    //setHighlightedItem(null);
+  }, [reset, setI])
+
   return (
     <>
       <Stack direction="row">
@@ -103,12 +110,6 @@ export default function PieChartWithCenterLabel({ funds, reset, select } : { fun
             setI(d?.dataIndex); 
             select(d?.dataIndex);
             setHighlightedItem(d);
-            console.log(d)
-          }}
-          onHighlightChange={(d) => {
-            if (hightlightedItem == null) { 
-              setHighlightedItem(d);
-            }
           }}
         >
           { i >= 0 ?

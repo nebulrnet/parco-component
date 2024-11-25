@@ -9,7 +9,7 @@ export const funds : Array<Fund> = [{
   parent: null,
   examples: "Apple, Google, Microsoft, Meta",
   description: "Very volatile, will reap the most rewards from good years and the worst losses of bad years.",
-  expanded: false,
+  expanded: true,
 }, {
   id: "d0f90d4f-46a5-495a-a24f-ee82734eb703",
   name: "G Fund",

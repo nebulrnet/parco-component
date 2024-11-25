@@ -3,7 +3,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useState, useEffect } from 'react';
 import {
   Accordion, AccordionDetails, AccordionSummary,
-  Card, CardContent, CardHeader, Typography, Chip, Stack,
+  Card, CardContent, Chip,
   Divider, Paper
 } from '@mui/material';
 import Grid from '@mui/material/Grid2';
@@ -11,13 +11,12 @@ import { styled } from '@mui/material/styles';
 import * as data from "@/app/api/funds/data"
 import PieChartWithCenterLabel from '../PieChartWithCenterLabel';
 
-import { DataGrid } from '@mui/x-data-grid';
-import { useDemoData } from '@mui/x-data-grid-generator';
 import { Fund } from '@/types';
 import currency from 'currency.js';
 
 const combined : Fund[] = [];
-const indexing : any = {};
+const indexing : { [key:string]: number } = {};
+
 let parent : string | null = null;
 for(let i = 0; i < data.funds.length; i++) {
   parent = data.funds[i].parent;
@@ -28,13 +27,6 @@ for(let i = 0; i < data.funds.length; i++) {
     combined[indexing[parent]].value += data.funds[i].value;
   }
 }
-
-const StyledText = styled('text')(({ theme }) => ({
-  fill: theme.palette.text.primary,
-  textAnchor: 'middle',
-  dominantBaseline: 'central',
-  fontSize: 20,
-}));
 
 const AccordianTitle  = styled('text')(({ theme }) => ({
   color: theme.palette.grey[300],
@@ -51,7 +43,7 @@ const CardLabel = styled('text')(({ theme }) => ({
   fontSize: 10
 }));
 
-const CardDescription = styled('text')(({ theme }) => ({
+const CardDescription = styled('text')(({}) => ({
   color: 'black',
   textAnchor: 'middle',
   dominantBaseline: 'central',
@@ -71,7 +63,7 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 
-const Label = styled(Chip)(({ theme }) => ({
+const Label = styled(Chip)(({}) => ({
   border: 'none',
 }));
 

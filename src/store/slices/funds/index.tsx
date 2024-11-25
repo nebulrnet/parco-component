@@ -1,9 +1,13 @@
 import axios from "axios";
 import { createSlice } from "@reduxjs/toolkit";
 import { AppDispatch } from "@/store/store";
-import Funds from "@/types/funds";
+import { Fund } from "@/types";
 
-const initialState : Funds = {
+type StateType = {
+  funds: Fund[];
+}
+
+const initialState : StateType = {
   funds: [],
 };
 

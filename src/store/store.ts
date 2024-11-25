@@ -2,8 +2,6 @@ import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 
 import fundsReducer from './slices/funds';
-import { Funds } from "@/types";
-
 export const store = configureStore({
   reducer: {
     fundsReducer: fundsReducer,
